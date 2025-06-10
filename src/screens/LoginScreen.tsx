@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Alert, Button, Text, TextInput, View } from "react-native";
+import { Alert, Button, SafeAreaView, Text, TextInput } from "react-native";
 import { useAuth } from "../context/AuthContext";
 
 type FormData = { user: string; password: string };
@@ -18,8 +18,8 @@ export default function LoginScreen() {
   };
 
   return (
-    <View>
-      <Text>Login</Text>
+    <SafeAreaView className="m-4 flex-1 justify-center">
+      <Text className="text-2xl mb-4">Login</Text>
 
       <Controller
         control={control}
@@ -27,8 +27,10 @@ export default function LoginScreen() {
         render={({ field: { onChange, value } }) => (
           <TextInput
             placeholder="Usuário"
+            className="border p-2 mb-2"
             value={value}
             onChangeText={onChange}
+            autoCapitalize="none"
           />
         )}
       />
@@ -40,6 +42,7 @@ export default function LoginScreen() {
           <TextInput
             placeholder="Senha"
             secureTextEntry
+            className="border p-2 mb-4"
             value={value}
             onChangeText={onChange}
           />
@@ -47,6 +50,6 @@ export default function LoginScreen() {
       />
 
       <Button title="Entrar" onPress={handleSubmit(onSubmit)} />
-    </View>
+    </SafeAreaView>
   );
 }

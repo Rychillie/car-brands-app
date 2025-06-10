@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import "./assets/tailwind.css";
 import { AuthProvider, useAuth } from "./src/context/AuthContext";
 import { HomeScreen, LoginScreen, ModelsScreen } from "./src/screens";
 
@@ -10,7 +11,7 @@ function Routes() {
   const { user } = useAuth();
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: true }}>
       {!user ? (
         <Stack.Screen name="Login" component={LoginScreen} />
       ) : (
