@@ -16,7 +16,12 @@ export default function Header({ name, signOut }: HeaderProps) {
         style={{ marginTop: insets.top }}
       >
         <View className="flex-row gap-2 items-center">
-          <View className="bg-darken-300 size-12 rounded-lg" />
+          <View className="size-12">
+            <Image
+              className="size-full rounded-lg"
+              source={require("../../assets/rychillie.png")}
+            />
+          </View>
           <View>
             <Text className="text-lighten-200">Olá,</Text>
             <Text className="text-lg font-bold text-lighten-200">{name}</Text>
