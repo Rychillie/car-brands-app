@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, Text } from "react-native";
+import { ItemList, Layout, ListItems } from "../components";
 
 export default function ModelsScreen({ route }: any) {
-  const { brandId, brandName } = route.params;
+  const { brandId } = route.params;
   const [models, setModels] = useState<any[]>([]);
-
-  console.log("model: ", route.params);
 
   useEffect(() => {
     fetch(
@@ -16,23 +14,14 @@ export default function ModelsScreen({ route }: any) {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 m-4">
-      <Text className="text-xl mb-4">{brandName}</Text>
-      <FlatList
+    <Layout>
+      <ListItems
         data={models}
         keyExtractor={(item) => item.codigo}
         renderItem={({ item }) => (
-          <Text
-            className={
-              item.codigo === models[models.length - 1].codigo
-                ? "p-3"
-                : "p-3 border-b"
-            }
-          >
-            {item.nome}
-          </Text>
+          <ItemList code={item.codigo} name={item.nome} />
         )}
       />
-    </SafeAreaView>
+    </Layout>
   );
 }

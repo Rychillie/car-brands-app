@@ -34,11 +34,16 @@ function Routes() {
             name="Home"
             component={HomeScreen}
             options={{
-              headerTitle: `Olá, ${user.name}`,
               header: () => <Header name={user.name} signOut={signOut} />,
             }}
           />
-          <Stack.Screen name="Models" component={ModelsScreen} />
+          <Stack.Screen
+            name="Models"
+            component={ModelsScreen}
+            options={({ route }: any) => ({
+              title: route.params?.brandName,
+            })}
+          />
         </>
       )}
     </Stack.Navigator>
