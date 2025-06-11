@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import "./assets/tailwind.css";
 import { Header } from "./src/components";
-import { AuthProvider, useAuth } from "./src/context/AuthContext";
+import { AuthProvider, useAuth } from "./src/context/auth-context";
 import { HomeScreen, LoginScreen, ModelsScreen } from "./src/screens";
 import { colors } from "./src/theme";
 

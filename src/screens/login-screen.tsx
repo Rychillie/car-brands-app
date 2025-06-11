@@ -1,7 +1,7 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, SafeAreaView, Text, TextInput } from "react-native";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/auth-context";
 
 type FormData = { user: string; password: string };
 

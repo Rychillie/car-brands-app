@@ -1,13 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, SafeAreaView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ItemList } from "../components";
 
 export default function HomeScreen({ navigation }: any) {
   const [brands, setBrands] = useState<any[]>([]);
@@ -41,18 +36,16 @@ export default function HomeScreen({ navigation }: any) {
         ItemSeparatorComponent={() => <View className="h-3" />}
         contentContainerStyle={{ marginVertical: 32 }}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            className="gap-1 mx-8 bg-darken-200 py-5 px-4 rounded-md"
+          <ItemList
+            code={item.codigo}
+            name={item.nome}
             onPress={() =>
               navigation.navigate("Models", {
                 brandId: item.codigo,
                 brandName: item.nome,
               })
             }
-          >
-            <Text className="text-lighten-100 font-bold">{item.nome}</Text>
-            <Text className="text-lighten-300 text-xs">{item.codigo}</Text>
-          </TouchableOpacity>
+          />
         )}
       />
     </SafeAreaView>
