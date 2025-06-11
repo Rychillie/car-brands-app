@@ -5,6 +5,8 @@ export default function ModelsScreen({ route }: any) {
   const { brandId, brandName } = route.params;
   const [models, setModels] = useState<any[]>([]);
 
+  console.log("model: ", route.params);
+
   useEffect(() => {
     fetch(
       `https://parallelum.com.br/fipe/api/v1/carros/marcas/${brandId}/modelos`

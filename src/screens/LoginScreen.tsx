@@ -18,7 +18,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView className="m-4 flex-1 justify-center">
+    <SafeAreaView className="m-4 flex-1 justify-center bg-darken-100">
       <Text className="text-2xl mb-4">Login</Text>
 
       <Controller

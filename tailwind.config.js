@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+import { colors } from './src/theme'
+
 module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
   content: [
@@ -7,7 +10,7 @@ module.exports = {
   ],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    colors,
   },
   plugins: [],
 }
