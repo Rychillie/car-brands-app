@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { ItemList, Layout, ListItems } from "../components";
+import React from "react";
+import { api, useFetch } from "../api";
+import { ItemList, Layout, ListItems, Skeleton } from "../components";
+import { BrandsResponse } from "../types/api";
 
 export default function HomeScreen({ navigation }: any) {
-  const [brands, setBrands] = useState<any[]>([]);
+  const { data, isLoading } = useFetch<BrandsResponse>(api.BrandsURL);
 
-  useEffect(() => {
-    fetch("https://parallelum.com.br/fipe/api/v1/carros/marcas")
-      .then((res) => res.json())
-      .then(setBrands);
-  }, []);
+  if (isLoading) {
+    return <Skeleton />;
+  }
 
   return (
     <Layout>
       <ListItems
-        data={brands}
+        data={data}
         keyExtractor={(item) => item.codigo}
         renderItem={({ item }) => (
           <ItemList
             code={item.codigo}
             name={item.nome}
+            isLast={
+              data && item.codigo === data[data.length - 1].codigo
+                ? true
+                : false
+            }
             onPress={() =>
               navigation.navigate("Models", {
                 brandId: item.codigo,

@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { ItemList, Layout, ListItems } from "../components";
+import React from "react";
+import { api, useFetch } from "../api";
+import { ItemList, Layout, ListItems, Skeleton } from "../components";
+import { ModelsResponse } from "../types/api";
 
 export default function ModelsScreen({ route }: any) {
   const { brandId } = route.params;
-  const [models, setModels] = useState<any[]>([]);
+  const { data, isLoading } = useFetch<ModelsResponse>(api.ModelsURL(brandId));
 
-  useEffect(() => {
-    fetch(
-      `https://parallelum.com.br/fipe/api/v1/carros/marcas/${brandId}/modelos`
-    )
-      .then((res) => res.json())
-      .then((data) => setModels(data.modelos));
-  }, []);
+  if (isLoading) {
+    return <Skeleton />;
+  }
 
   return (
     <Layout>
       <ListItems
-        data={models}
+        data={data?.modelos}
         keyExtractor={(item) => item.codigo}
         renderItem={({ item }) => (
-          <ItemList code={item.codigo} name={item.nome} />
+          <ItemList
+            code={item.codigo}
+            name={item.nome}
+            isLast={
+              data?.modelos &&
+              data?.modelos?.indexOf(item) === data?.modelos?.length - 1
+            }
+          />
         )}
       />
     </Layout>
