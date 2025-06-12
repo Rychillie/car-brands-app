@@ -8,6 +8,9 @@ const colors = {
         100: "#FFFFFF",
         200: "#E1E1E6",
         300: "#C4C4CC",
+    },
+    green: {
+        100: "#00875F"
     }
 }
 

@@ -1,10 +1,10 @@
 import React from "react";
 import { api, useFetch } from "../api";
 import { ItemList, Layout, ListItems, Skeleton } from "../components";
-import { BrandsResponse } from "../types/api";
+import { Api, Navigation } from "../types";
 
-export default function HomeScreen({ navigation }: any) {
-  const { data, isLoading } = useFetch<BrandsResponse>(api.BrandsURL);
+export default function HomeScreen({ navigation }: Navigation.HomeScreenProps) {
+  const { data, isLoading } = useFetch<Api.BrandsResponse>(api.BrandsURL);
 
   if (isLoading) {
     return <Skeleton />;

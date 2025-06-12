@@ -3,12 +3,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import "./assets/tailwind.css";
-import { Header } from "./src/components";
+import { BackButton, Header } from "./src/components";
 import { AuthProvider, useAuth } from "./src/context/auth-context";
 import { HomeScreen, LoginScreen, ModelsScreen } from "./src/screens";
 import { colors } from "./src/theme";
+import { RootStackParamList } from "./src/types/navigation";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function Routes() {
   const { user, signOut } = useAuth();
@@ -40,8 +41,9 @@ function Routes() {
           <Stack.Screen
             name="Models"
             component={ModelsScreen}
-            options={({ route }: any) => ({
+            options={({ route }) => ({
               title: route.params?.brandName,
+              headerLeft: () => <BackButton />,
             })}
           />
         </>

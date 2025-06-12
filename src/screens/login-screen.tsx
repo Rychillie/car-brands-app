@@ -21,7 +21,7 @@ export default function LoginScreen() {
     try {
       await signIn(data.user, data.password);
     } catch (err: any) {
-      Alert.alert("Erro", err.message);
+      Alert.alert("Error", err.message);
     }
   };
 
@@ -64,7 +64,7 @@ export default function LoginScreen() {
         />
 
         <TouchableOpacity
-          className="bg-darken-300 p-4 rounded-lg justify-center items-center"
+          className="bg-green-100 p-4 rounded-lg justify-center items-center"
           onPress={handleSubmit(onSubmit)}
         >
           <Text className="text-lighten-100 font-bold text-lg">Entrar</Text>
